@@ -1,0 +1,49 @@
+<!-- 1) Editor behavior -->
+<script type="text/javascript">
+RED.nodes.registerType('gatekeeper', {
+    category: 'function',
+    color: '#E2D96E',
+    defaults: {
+        name:         { value: "" },
+        property:     { value: "payload" },  // e.g. payload, allow, etc.
+        propertyType: { value: "msg" }       // msg | flow | global | env | jsonata
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "filter.png",
+    label: function () { return this.name || "gatekeeper"; },
+    oneditprepare: function () {
+        // Bind the typedInput to the visible field and store the type in the hidden field
+        $("#node-input-property").typedInput({
+            default: 'msg',
+            types: ['msg','flow','global','env','jsonata'],
+            typeField: $("#node-input-propertyType")
+        });
+    }
+});
+</script>
+
+<!-- 2) Edit dialog template-->
+<script type="text/x-red" data-template-name="gatekeeper">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-property"><i class="fa fa-list"></i> Property</label>
+        <input type="text" id="node-input-property" style="width:70%">
+        <input type="hidden" id="node-input-propertyType">
+    </div>
+</script>
+
+<!-- 3) Help panel -->
+<script type="text/x-red" data-help-name="gatekeeper">
+    <p>The <b>Gatekeeper</b> node controls whether a message continues through the flow.</p>
+    <p><b>Behavior</b></p>
+    <ul>
+        <li>If the checked value is <code>true</code> → gate <b>closed</b>: message is dropped, status shows <span style="color:red">closed</span>.</li>
+        <li>Otherwise → gate <b>open</b>: message passes, status shows <span style="color:green">open</span>.</li>
+    </ul>
+    <p><b>Property</b> supports: <code>msg</code>, <code>flow</code>, <code>global</code>, <code>env</code>, or a <code>jsonata</code> expression.</p>
+</script>

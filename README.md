@@ -104,4 +104,4 @@ Or via **Manage palette** → **Install** → search for `node-red-contrib-gatek
 
 ## License
 
-MIT © Aioub Sai
+MIT © AIOUBSAI

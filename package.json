@@ -2,6 +2,7 @@
   "name": "node-red-contrib-gatekeeper",
   "version": "0.1.0",
   "description": "A gatekeeper node to stop or allow message flow based on msg/flow/global/env/jsonata values",
+  "main": "gatekeeper.js",
   "license": "MIT",
   "keywords": ["node-red", "node-red-contrib", "gate", "filter", "jsonata"],
   "author": "Aioub Sai <sai.aioub@gmail.com> (https://github.com/AIOUBSAI)",
